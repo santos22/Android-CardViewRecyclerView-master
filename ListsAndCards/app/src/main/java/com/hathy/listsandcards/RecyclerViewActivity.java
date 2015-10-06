@@ -52,44 +52,6 @@ public class RecyclerViewActivity extends Activity {
         String siteUrl = "https://clever.com/about/";
         new ParseURL().execute(new String[]{siteUrl});
 
-//        ParseURL task = new ParseURL();
-//        ArrayList<Cleverian> testList = task.execute(new String[]{siteUrl}).get();
-
-        //new ParseURL(this).execute();
-
-//        Thread downloadThread = new Thread() {
-//            public void run() {
-//                Document doc;
-//
-//                try{
-//                    doc = Jsoup.connect("https://clever.com/about/").get();
-//
-//                    Elements htmlNames = doc.select(".modal-content").select("h3");
-//                    Elements htmlPositions = doc.select("div.modal-content > h4");
-//
-//                    for(int i = 0; i < htmlNames.size(); i++)
-//                    {
-//                        Cleverian peep = new Cleverian();
-//                        cleverPeeps.add(peep);
-//                    }
-//
-//                    for(int i = 0; i < cleverPeeps.size(); i++)
-//                    {
-//                        cleverPeeps.get(i).name = htmlNames.get(i).text();
-//                        cleverPeeps.get(i).position = htmlPositions.get(i).text();
-//                        //cleverPeeps.get(i).image = htmlImages.get(i).attr("src");
-//                    }
-//
-//                    System.out.println(cleverPeeps.get(0).name);
-//
-//                    //persons.add(new Person("EMMA", "YUH", R.drawable.emma));
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        };
-//        downloadThread.start();
-
         //initializeData();
         //initializeAdapter();
     }
@@ -161,6 +123,7 @@ public class RecyclerViewActivity extends Activity {
             System.out.println(blah.get(i).name);
             persons.add(new Person(blah.get(i).name, blah.get(i).age, R.drawable.emma));
         }
+        persons.add(new Person("Santos Solorzano", "Intern", R.drawable.emma));
     }
 
     private void initializeAdapter(){
