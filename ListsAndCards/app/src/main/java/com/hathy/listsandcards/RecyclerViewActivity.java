@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ColorDrawable;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import com.squareup.picasso.Picasso;
 
 // http://stackoverflow.com/questions/30731121/how-can-i-return-an-arraylist-from-my-asynctask
 
@@ -52,11 +55,12 @@ public class RecyclerViewActivity extends Activity {
         String siteUrl = "https://clever.com/about/";
         new ParseURL().execute(new String[]{siteUrl});
 
+        //Picasso.with(getApplicationContext()).load("https://prismic-io.s3.amazonaws.com/clever/1479b7352e83c6f633cbcfe7ff995b4302650c25_dan.png").into(cleverImage);
+        //myDrawable = cleverImage.getDrawable();
+
         //initializeData();
         //initializeAdapter();
     }
-
-    public static ArrayList<Person> testList = new ArrayList<>();
 
     private class ParseURL extends AsyncTask<String, Void, ArrayList<Person>> {
         ArrayList<Person> cleverPeeps = new ArrayList<>();
@@ -69,6 +73,7 @@ public class RecyclerViewActivity extends Activity {
 
                 Elements htmlNames = doc.select(".modal-content").select("h3");
                 Elements htmlPositions = doc.select("div.modal-content > h4");
+                //Elements htmlImages = doc.select(".modal-content").select("img[src~=(?i)\\.(png|jpe?g|gif)]");
 
                 for(int i = 0; i < htmlNames.size(); i++)
                 {
@@ -82,10 +87,6 @@ public class RecyclerViewActivity extends Activity {
                     cleverPeeps.get(i).age = htmlPositions.get(i).text();
                     //cleverPeeps.get(i).image = htmlImages.get(i).attr("src");
                 }
-
-                System.out.println(cleverPeeps.get(78).name);
-
-                //persons.add(new Person("EMMA", "YUH", R.drawable.emma));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -101,26 +102,15 @@ public class RecyclerViewActivity extends Activity {
 
         @Override
         protected void onPostExecute(ArrayList<Person> s) {
-
-            //System.out.println(s.get(0).name);
-            testList = s;
-            //System.out.println(testList.get(0).name);
             initializeData(s);
             initializeAdapter();
-            //super.onPostExecute(s);
-//            respText.setText(s);
         }
     }
 
     private void initializeData(ArrayList<Person> blah){
 
-        //persons = new ArrayList<>();
-
-        System.out.println(blah.get(1).name);
-
         for(int i = 0; i < blah.size(); i++)
         {
-            System.out.println(blah.get(i).name);
             persons.add(new Person(blah.get(i).name, blah.get(i).age, R.drawable.emma));
         }
         persons.add(new Person("Santos Solorzano", "Intern", R.drawable.emma));
