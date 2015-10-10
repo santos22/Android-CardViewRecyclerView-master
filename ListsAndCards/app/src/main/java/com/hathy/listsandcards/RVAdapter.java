@@ -8,21 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.util.Log;
-import java.io.InputStream;
-import com.squareup.picasso.Picasso;
-import android.net.Uri;
-import java.net.URL;
-import java.net.HttpURLConnection;
-import java.util.ArrayList;
-
 import android.content.Context;
-import android.content.Intent;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -40,7 +28,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
 
             cv = (CardView)itemView.findViewById(R.id.cv);
             personName = (TextView)itemView.findViewById(R.id.person_name);
-            personAge = (TextView)itemView.findViewById(R.id.person_age);
+            personAge = (TextView)itemView.findViewById(R.id.person_position);
             personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
         }
     }
@@ -87,9 +75,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
         personViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(v.getContext(), CleverInfo.class);
-                //you can pass on the Pojo with PARCELABLE
-                //Toast.makeText(v.getContext(), name, Toast.LENGTH_LONG).show();
                 Toast.makeText(v.getContext(), about, Toast.LENGTH_LONG).show();
             }
         });

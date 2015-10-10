@@ -2,40 +2,18 @@ package com.hathy.listsandcards;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ColorDrawable;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-
 import java.io.IOException;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import com.squareup.picasso.Picasso;
-
-// http://stackoverflow.com/questions/30731121/how-can-i-return-an-arraylist-from-my-asynctask
 
 public class RecyclerViewActivity extends Activity {
-
-    static class Cleverian {
-        String name;
-        String position;
-        String image;
-        String paragraph;
-    }
 
     private ArrayList<Person> persons;
     private RecyclerView rv;
