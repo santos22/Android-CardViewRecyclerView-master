@@ -15,7 +15,7 @@ import org.jsoup.select.Elements;
 
 public class RecyclerViewActivity extends Activity {
 
-    private ArrayList<Person> persons;
+    private ArrayList<Cleveran> persons;
     private RecyclerView rv;
 
     @Override
@@ -37,11 +37,11 @@ public class RecyclerViewActivity extends Activity {
         //initializeAdapter();
     }
 
-    private class ParseURL extends AsyncTask<String, Void, ArrayList<Person>> {
-        ArrayList<Person> cleverPeeps = new ArrayList<>();
+    private class ParseURL extends AsyncTask<String, Void, ArrayList<Cleveran>> {
+        ArrayList<Cleveran> cleverPeeps = new ArrayList<>();
 
         @Override
-        protected ArrayList<Person> doInBackground(String... strings) {
+        protected ArrayList<Cleveran> doInBackground(String... strings) {
             Document doc;
             try{
                 doc = Jsoup.connect("https://clever.com/about/").get();
@@ -53,14 +53,14 @@ public class RecyclerViewActivity extends Activity {
 
                 for(int i = 0; i < htmlNames.size(); i++)
                 {
-                    Person peep = new Person("", "", "", "", R.drawable.csmall);
+                    Cleveran peep = new Cleveran("", "", "", "", R.drawable.csmall);
                     cleverPeeps.add(peep);
                 }
 
                 for(int i = 0; i < cleverPeeps.size(); i++)
                 {
                     cleverPeeps.get(i).name = htmlNames.get(i).text();
-                    cleverPeeps.get(i).age = htmlPositions.get(i).text();
+                    cleverPeeps.get(i).position = htmlPositions.get(i).text();
                     cleverPeeps.get(i).image = htmlImages.get(i).attr("src");
                 }
 
@@ -83,19 +83,19 @@ public class RecyclerViewActivity extends Activity {
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Person> s) {
+        protected void onPostExecute(ArrayList<Cleveran> s) {
             initializeData(s);
             initializeAdapter();
         }
     }
 
-    private void initializeData(ArrayList<Person> blah){
+    private void initializeData(ArrayList<Cleveran> blah){
 
         for(int i = 0; i < blah.size(); i++)
         {
-            persons.add(new Person(blah.get(i).name, blah.get(i).age, blah.get(i).blurb, blah.get(i).image, R.drawable.csmall));
+            persons.add(new Cleveran(blah.get(i).name, blah.get(i).position, blah.get(i).blurb, blah.get(i).image, R.drawable.csmall));
         }
-        persons.add(new Person("Santos Solorzano", "Intern", "HIRE ME PLEASE", blah.get(0).blurb, R.drawable.csmall));
+        persons.add(new Cleveran("Santos Solorzano", "Intern", "HIRE ME PLEASE", blah.get(0).blurb, R.drawable.csmall));
     }
 
     private void initializeAdapter(){

@@ -33,10 +33,10 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
         }
     }
 
-    List<Person> persons;
+    List<Cleveran> persons;
     private Context mContext;
 
-    RVAdapter(Context context, List<Person> persons){
+    RVAdapter(Context context, List<Cleveran> persons){
         this.persons = persons;
         this.mContext = context;
     }
@@ -60,10 +60,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
     @Override
     public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
         personViewHolder.personName.setText(persons.get(i).name);
-        personViewHolder.personAge.setText(persons.get(i).age);
+        personViewHolder.personAge.setText(persons.get(i).position);
 
         final String about = persons.get(i).blurb;
 
+        // load Clever employee images
         Picasso.with(mContext)
                 .load(persons.get(i).image)
                 .fit().centerCrop()
@@ -72,6 +73,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
                 .noFade()
                 .into(personViewHolder.personPhoto);
 
+        // display employee blurb on touch
         personViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
