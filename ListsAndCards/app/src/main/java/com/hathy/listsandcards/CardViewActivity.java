@@ -16,16 +16,7 @@ public class CardViewActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        String imageUrl = "https://www.baby-connect.com/images/baby2.gif";
-//
-//        Picasso.with(getApplicationContext()).load(imageUrl)
-//                .placeholder(R.drawable.images).error(R.drawable.ic_launcher)
-//                .into(imageView);
         ImageView imageView = (ImageView) findViewById(R.id.person_photo);
-
-        Picasso.with(this)
-                .load("https://cms-assets.tutsplus.com/uploads/users/21/posts/19431/featured_image/CodeFeature.jpg")
-                .into(imageView);
 
         setContentView(R.layout.cardview_activity);
         personName = (TextView)findViewById(R.id.person_name);

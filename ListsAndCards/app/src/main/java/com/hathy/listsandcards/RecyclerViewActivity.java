@@ -55,9 +55,6 @@ public class RecyclerViewActivity extends Activity {
         String siteUrl = "https://clever.com/about/";
         new ParseURL().execute(new String[]{siteUrl});
 
-        //Picasso.with(getApplicationContext()).load("https://prismic-io.s3.amazonaws.com/clever/1479b7352e83c6f633cbcfe7ff995b4302650c25_dan.png").into(cleverImage);
-        //myDrawable = cleverImage.getDrawable();
-
         //initializeData();
         //initializeAdapter();
     }
