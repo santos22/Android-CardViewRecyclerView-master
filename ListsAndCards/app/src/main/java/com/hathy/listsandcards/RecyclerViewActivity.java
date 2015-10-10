@@ -71,13 +71,14 @@ public class RecyclerViewActivity extends Activity {
             try{
                 doc = Jsoup.connect("https://clever.com/about/").get();
 
+                Elements htmlParagraphs = doc.select("p");
                 Elements htmlNames = doc.select(".modal-content").select("h3");
                 Elements htmlPositions = doc.select("div.modal-content > h4");
-                //Elements htmlImages = doc.select(".modal-content").select("img[src~=(?i)\\.(png|jpe?g|gif)]");
+                Elements htmlImages = doc.select(".modal-content").select("img[src~=(?i)\\.(png|jpe?g|gif)]");
 
                 for(int i = 0; i < htmlNames.size(); i++)
                 {
-                    Person peep = new Person("", "", R.drawable.emma);
+                    Person peep = new Person("", "", "", "", R.drawable.csmall);
                     cleverPeeps.add(peep);
                 }
 
@@ -85,8 +86,14 @@ public class RecyclerViewActivity extends Activity {
                 {
                     cleverPeeps.get(i).name = htmlNames.get(i).text();
                     cleverPeeps.get(i).age = htmlPositions.get(i).text();
-                    //cleverPeeps.get(i).image = htmlImages.get(i).attr("src");
+                    cleverPeeps.get(i).image = htmlImages.get(i).attr("src");
                 }
+
+                for(int i = 1; i < htmlParagraphs.size(); i+= 3)
+                {
+                    cleverPeeps.get(i/3).blurb = htmlParagraphs.get(i).text();
+                }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -111,13 +118,13 @@ public class RecyclerViewActivity extends Activity {
 
         for(int i = 0; i < blah.size(); i++)
         {
-            persons.add(new Person(blah.get(i).name, blah.get(i).age, R.drawable.emma));
+            persons.add(new Person(blah.get(i).name, blah.get(i).age, blah.get(i).blurb, blah.get(i).image, R.drawable.csmall));
         }
-        persons.add(new Person("Santos Solorzano", "Intern", R.drawable.emma));
+        persons.add(new Person("Santos Solorzano", "Intern", "HIRE ME PLEASE", blah.get(0).blurb, R.drawable.csmall));
     }
 
     private void initializeAdapter(){
-        RVAdapter adapter = new RVAdapter(persons);
+        RVAdapter adapter = new RVAdapter(this, persons);
         rv.setAdapter(adapter);
     }
 }
