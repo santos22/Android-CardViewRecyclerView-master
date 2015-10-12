@@ -90,7 +90,7 @@ public class RecyclerViewActivity extends Activity {
     }
 
     private void initializeData(ArrayList<Cleveran> clever){
-        String aboutSantos = "Santos is in his 4th year at Texas A&M University, and" +
+        String aboutSantos = "Santos is in his 4th year at Texas A&M University, and " +
                 "in his 2nd year in computer science after switching over from civil engineering. " +
                 "He fancied data structures a bit more than architectural structures, and is keen on" +
                 " getting a summer internship at Clever. Gaining real world experience while making " +
@@ -99,11 +99,13 @@ public class RecyclerViewActivity extends Activity {
                 "his technical talents to the team and looks forward to contributing to Clever’s " +
                 "mission to improve the quality of education for students all over the world.";
 
+        String imageSantos = "http://oi59.tinypic.com/10einix.jpg";
+
         for(int i = 0; i < clever.size(); i++)
         {
             persons.add(new Cleveran(clever.get(i).name, clever.get(i).position, clever.get(i).blurb, clever.get(i).image, R.drawable.csmall));
         }
-        persons.add(new Cleveran("Santos Solorzano", "Intern", aboutSantos, clever.get(0).blurb, R.drawable.csmall));
+        persons.add(new Cleveran("Santos Solorzano", "Engineering - Intern", aboutSantos, imageSantos, R.drawable.csmall));
     }
 
     private void initializeAdapter(){
