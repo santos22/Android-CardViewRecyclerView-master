@@ -24,6 +24,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
         TextView personAge;
         ImageView personPhoto;
 
+        // initialize views that belong to the items of our RecyclyerView
         PersonViewHolder(View itemView) {
             super(itemView);
 
@@ -37,6 +38,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
     List<Cleveran> persons;
     private Context mContext;
 
+    // constructor for custom adapter is given a handle to
+    // the data that RecyclerView displays
     RVAdapter(Context context, List<Cleveran> persons){
         this.persons = persons;
         this.mContext = context;
@@ -47,6 +50,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
         super.onAttachedToRecyclerView(recyclerView);
     }
 
+    // gets ViewHolder used for the item at given position
     @Override
     public PersonViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item, viewGroup, false);
@@ -58,14 +62,16 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
     public void onClick(View v) {
     }
 
+    // called when views need to be created from the given ViewHolder
     @Override
     public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
+        // each employee is a ViewHolder (sets name and job position)
         personViewHolder.personName.setText(persons.get(i).name);
         personViewHolder.personAge.setText(persons.get(i).position);
 
         final String about = persons.get(i).blurb;
 
-        // load Clever employee images
+        // load and set Clever employee images
         Picasso.with(mContext)
                 .load(persons.get(i).image)
                 .fit().centerCrop()
@@ -74,7 +80,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
                 .noFade()
                 .into(personViewHolder.personPhoto);
 
-        // display employee blurb on touch
+        // display employee About blurb on touch
         personViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +93,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
         });
     }
 
+    // returns number of data items
     @Override
     public int getItemCount() {
         return persons.size();
